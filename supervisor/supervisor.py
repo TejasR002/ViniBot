@@ -1,18 +1,15 @@
 from langchain.memory import ConversationBufferMemory
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
-from agents.agents import  AppointmentScheduleAgent,CaseGeneratorAgent,MedicineInventory
 from langchain_core.prompts import PromptTemplate
-from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import  load_dotenv
 load_dotenv()
-# model2 = ChatGoogleGenerativeAI(model="gemini-2.0-flash" )
-# model2.invoke("Hello")
+
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-def SuperVisorAgent(query:str)->str:
+def supervisoragent(query:str)->str:
 
     model = ChatOpenAI(model='gpt-4.1-nano', temperature=0)
-    model2 = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
+    # model2 = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 
     router_prompt_template = """You are a multi-agent router responsible for selecting the best agent to handle the incoming user query. Choose the most suitable agent from the following options based on the task described in the query.:
     
@@ -48,30 +45,8 @@ def SuperVisorAgent(query:str)->str:
     return response
 
 
-def router_agent_executer(query: str) :
 
-    agent_name = None
-    tool_used = None
-    agent_thought = ""
-
-    agent = SuperVisorAgent(query)
-    agent_thought += f"Supervisor decided to use: {agent}\n"
-
-    print("I am in router agent" , agent)
-
-    if agent == "AppointmentScheduleAgent":
-        tool_used = "AppointmentScheduleAgentTool"
-        output = AppointmentScheduleAgent(query , memory)
-    elif agent == "CaseGeneratorAgent":
-        tool_used = "CaseGeneratorAgent"
-        output = CaseGeneratorAgent(query,memory)
-    elif agent == "Maintain Inventory":
-        tool_used = "Maintain InventoryTool"
-        output = MedicineInventory(query,memory)
-    else:
-        output = "Currently this feature is not available, wait for future improvements"
-    return {"output": output, "tool": tool_used,"agent_thought": agent_thought,"agent": agent, "memory": memory.buffer, "chat_history": memory.chat_memory,}
 
 # if __name__ == "__main__":
-#     query = "List all available appointments "
-#     print("This is final output" , router_agent_executer(query))
+#     query = "List all availableappointments "
+#     print(" This is finaloutput ", router_agent_executer(query))
