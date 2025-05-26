@@ -55,14 +55,6 @@ if st.button("Submit"):
                 agent_thought = response["agent_thought"]
                 tool_used = response["tool"]
                 output = response["output"]
-
-                # # Display agent reasoning and tool usage immediately
-                # with st.expander("🤖 Agent Info", expanded=True):
-                #     st.markdown(f"**UserQuery:** {user_input}")
-                #     st.markdown(f"**Agent Used:** {agent_name}")
-                #     st.markdown(f"**Tool Used:** {tool_used}")
-                #     st.markdown(f"**Agent Thought:**\n```\n{agent_thought}\n```")
-                #     st.markdown(f"**Output:** {output}")
                 st.session_state.history.append((
                     "Assistant",
                     {
@@ -81,7 +73,6 @@ if st.button("Submit"):
 for x in st.session_state.history:
     print("******************************************************************************************************************************")
     print(x)
-
 #
 for sender, message in st.session_state.history:
     # if sender == "User":
@@ -93,7 +84,7 @@ for sender, message in st.session_state.history:
             st.markdown(f'<div class="big-font"><b>UserQuery:</b> {message["user_input"]}</div>', unsafe_allow_html=True)
             st.markdown(f'<div class="big-font"><b>Agent Used:</b> {message["agent_name"]}</div>', unsafe_allow_html=True)
             st.markdown(f'<div class="big-font"><b>Tool Used:</b> {message["tool_used"]}</div>', unsafe_allow_html=True)
-            st.markdown(f'<div class="big-font"><b>Agent Thought:</b></div><div class="big-font"><b>{message["agent_thought"]}</b>',unsafe_allow_html=True)
+            st.markdown(f'<div class="big-font"><b>Agent Thought:</b></div><div class="big-font"><b>{message["agent_thought"]}</b></div>', unsafe_allow_html=True)
             st.markdown(f'<div class="big-font"><b>Agent Output:</b> {message["output"]}</div>', unsafe_allow_html=True)
         # else:
         #     st.markdown(f"**🤖 {sender}:** {message}")
