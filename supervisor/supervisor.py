@@ -11,7 +11,7 @@ def supervisoragent(query:str)->str:
     model = ChatOpenAI(model='gpt-4.1-nano', temperature=0)
     # model2 = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 
-    router_prompt_template = """You are a multi-agent router responsible for selecting the best agent to handle the incoming user query. Choose the most suitable agent from the following options based on the task described in the query.:
+    supervisor_prompt_template = """You are a multi-agent router responsible for selecting the best agent to handle the incoming user query. Choose the most suitable agent from the following options based on the task described in the query.:
     
     INSTRUCTIONS:
         If any agent stuck at any point or need any data from the user, ask the user for input using agent's tools.
@@ -36,7 +36,7 @@ def supervisoragent(query:str)->str:
     Return only the most suitable agent name. If no agent is clearly suitable, default to **CaseGeneratorAgent**.
     """
     # Define the prompt template with required variables
-    router_prompt = PromptTemplate(template=router_prompt_template, input_variables=['query'])
+    router_prompt = PromptTemplate(template=supervisor_prompt_template, input_variables=['query'])
 
     chain = router_prompt | model | StrOutputParser()
     response = chain.invoke({"query":query})
