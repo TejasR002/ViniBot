@@ -27,3 +27,13 @@ def show_details(patient_name: str) -> dict:
     """Gives the  data of the patient from patient's name"""
     patient_data = patients_db[patient_name]
     return patient_data
+
+
+@tool("find_patient_in_data", return_direct=False)
+def find_patient_in_data(query: str) -> list:
+    """Finds the patient(s) in the database based on the query"""
+    available_patients = []
+    for name, data in patients_db.items():
+        if query.strip().lower() in name.lower():
+            available_patients.append({name: patients_db[name]})
+    return available_patients

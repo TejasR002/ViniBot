@@ -5,6 +5,7 @@ from langchain_openai import ChatOpenAI
 from data.data import patients_db
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from langchain.tools import  tool,Tool
 import smtplib
 
 
@@ -82,7 +83,7 @@ def request_user_input(message: str) -> str:
     """Ask the user for input with a custom message."""
     return input(f"{message}\n> ")
 
-
+@tool("ask for details of the new patient",return_direct=True)
 def get_patient_data(patient_name: str) -> dict:
     """Asks Patient for getting the data and added them to patients_db"""
     patient_data = {}

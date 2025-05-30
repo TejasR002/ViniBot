@@ -5,6 +5,8 @@ from data.data import  patients_db
 from DataManager.managePatient import PatientDBTools
 from langchain_core.output_parsers import StrOutputParser
 from config import key
+from tools.tools import get_patient_data
+
 key = key
 
 
@@ -13,12 +15,13 @@ patient_tools = PatientDBTools(patients_db)
 
 def CaseGeneratorAgent(query:str,memory):
     # Initialize LLM
-    model = ChatOpenAI(model="gpt-4.1-nano", api_key=key)
+    model = ChatOpenAI(model="gpt-4o-mini", api_key=key)
     # Wrap tools properly
     tools = [
         Tool(name = "showPatientDetails",
              func = patient_tools.query_patient,
              description="uery patient record by name. from patient_db "),
+    #    get_patient_data,
 
         Tool(name="InsertPatient",
              func=patient_tools.insert_patient,
@@ -53,7 +56,7 @@ def CaseGeneratorAgent(query:str,memory):
     # Call agent
     response = agent_executor.invoke({
         "input": query,
-        "chat_history":[],
+        "chat_history":memory.chat_memory.messages,
 })
     output_parser = StrOutputParser()
 

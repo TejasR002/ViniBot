@@ -14,7 +14,7 @@ stock = medicineDBTools(medicine_inventory)
 
 def MedicineInventory(query:str,memory):
     # Initialize LLM
-    model = ChatOpenAI(model="gpt-4.1-nano", api_key=key)
+    model = ChatOpenAI(model="gpt-4o-mini", api_key=key)
     # Wrap tools properly
     tools = [
         Tool(name="GetStock",
@@ -44,6 +44,7 @@ def MedicineInventory(query:str,memory):
     # Call agent
     response = agent_executor.invoke({
         "input": query,
+        "chat_history":memory.chat_memory.messages
 
 })
     output_parser = StrOutputParser()

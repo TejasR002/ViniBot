@@ -2,7 +2,7 @@ from langchain_core.prompts import PromptTemplate
 
 template = """\nYou are an intelligent agent designed to reason step-by-step and solve complex problems using external tools.\n
     "\nConversation history (if relevant):\n"
-    "\n{chat_history}\n\n"
+     use this chat history for relevant context chat history -> {chat_history}
     
     #Instructions:
     #1. If the user's current question depends on earlier conversation, refer to the relevant context provided in the chat history.
@@ -24,6 +24,7 @@ template = """\nYou are an intelligent agent designed to reason step-by-step and
     "{tools}\n\n"
     "When solving a problem, follow this structured format:\n\n"
     "Question: the user’s question\n\n"
+    "Observation: understand user's given question and fetch available important data from the user input\n"
     "Thought: your reasoning about what to do next\n\n"
     "Action: the action to take , strictly use only this [{tool_names}]\n\n"
     "Action Input: the input required for the action from the user\n\n"
@@ -34,7 +35,7 @@ template = """\nYou are an intelligent agent designed to reason step-by-step and
     "Final Answer: your final response to the user\n\n"
     "Begin below !:\n\n"
     "Question: {input}\n\n"
-    "Thought: {agent_scratchpad}\n\n"
+    
 )
 """
 # Define the prompt template with required variables

@@ -15,7 +15,7 @@ appointments = appointmentDBTools(appointments_schedule)
 
 def AppointmentScheduleAgent(query:str , memory):
     # Initialize LLM
-    model = ChatOpenAI(model="gpt-4.1-nano", api_key=key)
+    model = ChatOpenAI(model="gpt-4o-mini", api_key=key)
     # Wrap tools properly
 
     tools = [
@@ -56,6 +56,7 @@ def AppointmentScheduleAgent(query:str , memory):
 
     response = agent_executor.invoke({
         "input": query,
+        "chat_history":memory.chat_memory.messages
 
 })
     print(response)

@@ -1,8 +1,3 @@
-
-
-from supervisor.supervisor import  router_agent_executer
-
-router_agent_executer("check total stock available in inventory")
-
-
-
+import  streamlit as st
+st.title("Vinithe chatbot")
+from supervisor.router_agent import  router_agent_executer
