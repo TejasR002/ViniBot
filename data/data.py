@@ -2,10 +2,10 @@ from typing import Dict, List, Optional
 from datetime import  date
 # Dummy data for patients, appointments, and inventory
 patients_db: Dict[str, Dict] = {
-    "John Doe": {"age": 30, "marital_status": "single","email":"2x3osjs@gmail.com" ,"address":"Simform","phone":8564846546,'case':'1'},
-    "Jane Smith": {"age": 25, "marital_status": "married","email":"2x3osjs@gmail.com","address":"Simform","phone":6876416848,'case':'2'},
-    "Kanya waste":{"age": 23, "marital_status": "married","email":"2x3osjs@gmail.com","address":"Simform","phone":6852416848,'case':'3'},
-    "Janna Otega" :{"age": 28, "marital_status": "single","email":"2x3osjs@gmail.com","address":"Simform","phone":68522316848,'case':'4'},
+    "John Doe": {"Age": 30, "Gender": "Male","EmailAddress":"2x3osjs@gmail.com" ,"Address":"Simform","PhoneNumber":8564846546},
+    "Jane Smith": {"Age": 25, "Gender": "Male","EmailAddress":"2x3osjs@gmail.com","Address":"Simform","PhoneNumber":6876416848},
+    "Kanya waste":{"Age": 23, "Gender": "Female","EmailAddress":"2x3osjs@gmail.com","Address":"Simform","PhoneNumber":6852416848},
+    "Janna Otega" :{"Age": 28, "Gender": "Female","EmailAddress":"2x3osjs@gmail.com","Address":"Simform","PhoneNumber":68522316848},
 }
 
 case_db:Dict[str,Dict] = {
