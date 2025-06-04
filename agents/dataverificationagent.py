@@ -49,8 +49,7 @@ def dataverificationagent(query:str,memory)->bool:
     model = ChatOpenAI(model='gpt-4o-mini', temperature=0)
 
     tools = [find_patient_in_data]
-    agent = create_react_agent(llm=model, tools=tools,prompt=verification_prompt,output_parser=CustomReActOutputParser(),
-)
+    agent = create_react_agent(llm=model, tools=tools,prompt=verification_prompt,output_parser=CustomReActOutputParser())
 
     agent_executor = AgentExecutor(
         tools=tools,
