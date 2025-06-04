@@ -103,3 +103,15 @@ def show_details(patient_name: str) -> dict:
     return patient_data
 
 # SUPERVISOR TOOLS
+
+
+
+def missing_data(query:str):
+    """Checks if the required data is missing in the query"""
+    required_data = ['Name', 'Age', 'Gender', 'Email', 'Phone_no', 'Address']
+    missed_data = "These data are missing: "
+    for data in required_data:
+        if data.lower() not in query:
+           missed_data = missed_data + data + ", "
+    print(missed_data)
+    return missed_data

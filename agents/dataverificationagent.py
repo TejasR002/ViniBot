@@ -1,3 +1,4 @@
+from langchain.memory.chat_memory import BaseChatMemory
 from langchain_openai import  ChatOpenAI
 from langchain.agents import create_react_agent
 from langchain.agents import  AgentExecutor
@@ -43,7 +44,7 @@ class CustomReActOutputParser(AgentOutputParser):
         raise ValueError(f"Could not parse LLM output: `{text}`")
 
 
-def dataverificationagent(query:str)->bool:
+def dataverificationagent(query:str,memory)->bool:
 
     model = ChatOpenAI(model='gpt-4o-mini', temperature=0)
 
@@ -56,17 +57,19 @@ def dataverificationagent(query:str)->bool:
         agent=agent,
         verbose=True,
         max_iterations=5,
-
+        memory=memory,
         handle_parsing_errors=True
     )
 
     # Call agent
     response = agent_executor.invoke({
         "input": query,
+        "chat_history":memory.buffer_as_messages
     })
 
 
     answer = response.get("output", "").strip()
+    print("\ninside the data verification agent\n")
     return answer.lower() == "true"
     # # This assumes `raw_output` is a dict like {'output': 'some string'}
     # parsed_output = output_parser.invoke(response['output'])

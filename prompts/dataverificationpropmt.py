@@ -1,7 +1,10 @@
 from langchain_core.prompts import PromptTemplate
 
 
-prompt_template = """You are a data verification agent.
+prompt_template = """You are a data verification agent.you read the memory {chat_history} and check for the reuqired fields.
+
+if the conversation is ongoing  and each and every required field is available then only you return False 
+if the conversation is new then you follow the below logic.
 
 You must determine if all of the following fields are available for a user:
 - Name
@@ -40,4 +43,4 @@ Question: {input}
 """
 
 
-verification_prompt = PromptTemplate(template=prompt_template, input_variables=["input"])
+verification_prompt = PromptTemplate(template=prompt_template, input_variables=["input","chat_history","agent_scratchpad","tool_names","tools"])
