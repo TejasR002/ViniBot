@@ -56,7 +56,7 @@ def CaseGeneratorAgent(query:str,memory):
     # Call agent
     response = agent_executor.invoke({
         "input": query,
-        "chat_history":memory.chat_memory.messages,
+        "chat_history":memory
 })
     output_parser = StrOutputParser()
 

@@ -56,13 +56,11 @@ def AppointmentScheduleAgent(query:str , memory):
 
     response = agent_executor.invoke({
         "input": query,
-        "chat_history":memory.chat_memory.messages
+        "chat_history":memory
 
 })
-    print(response)
     output_parser = StrOutputParser()
 
     # This assumes `raw_output` is a dict like {'output': 'some string'}
     parsed_output = output_parser.invoke(response['output'])
-    print(parsed_output)
     return parsed_output
