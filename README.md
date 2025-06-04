@@ -83,7 +83,7 @@ Follow these steps to set up and run ViniBot:
 ```
 4. **Run the application:**
    ```bash
-   streamlit run main.py
+   streamlit run app.py
    ```
 
 
