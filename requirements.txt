@@ -2,7 +2,7 @@ langchain==0.3.25
 langchain-core==0.3.63
 langchain-openai==0.3.19
 pydantic==2.11.5
-pydantic-core==2.34.1
+pydantic-core
 python-dotenv==1.1.0
 streamlit==1.45.1
 sympy==1.14.0
