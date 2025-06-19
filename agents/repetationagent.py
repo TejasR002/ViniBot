@@ -47,10 +47,10 @@ def repeat_flow(query: str, memory) :
     model = ChatOpenAI(model="gpt-4o-mini", api_key=key)
 
 
-    print("--------------------------------------------------------------------------")
+   
 
     print(memory.buffer if hasattr(memory, 'buffer') else str(memory))
-    print("--------------------------------------------------------------------------")
+    
     print(query )
 
     agent = create_react_agent(
