@@ -85,5 +85,50 @@ Follow these steps to set up and run ViniBot:
    ```bash
    streamlit run app.py
    ```
+---
+## 🐳 Docker Usage
+
+### 📁 Project Structure (Required)
+
+```
+vinibot/
+├── app.py
+├── requirements.txt
+├── Dockerfile
+├── external.env      # <-- your .env file with secrets (OpenAI key etc.)
+```
+
+Your `.env` file (named `external.env`) should look like:
+
+```
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+---
+
+### 🔨 Step 1: Build Docker Image
+
+```bash
+docker build -t <NAME> .
+```
+
+---
+
+### ▶️ Step 2: Run the Container (with external .env)
+
+```bash
+docker run -p 8501:8501 \
+  -v $(pwd)/external.env:/app/.env \
+  <NAME>
+```
+
+> 💡 On Windows PowerShell:
+```powershell
+docker run -p 8501:8501 `
+  -v ${PWD}/external.env:/app/.env `
+  <NAME>
+```
+
+Then open your browser at: [http://localhost:8501](http://localhost:8501)
 
 
